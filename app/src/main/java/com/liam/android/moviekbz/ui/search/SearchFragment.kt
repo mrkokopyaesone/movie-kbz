@@ -30,7 +30,7 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val vm: MoviesViewModel by viewModels()
-    var keyword = ""
+    var keyword = "test"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
