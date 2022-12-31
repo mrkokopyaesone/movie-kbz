@@ -45,6 +45,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.movie_search -> {
                     binding.toolbar.visibility = View.GONE
                 }
+                R.id.movie_detail ->{
+                    binding.toolbar.visibility = View.GONE
+                }
                 else -> {
                     binding.toolbar.visibility = View.VISIBLE
                 }

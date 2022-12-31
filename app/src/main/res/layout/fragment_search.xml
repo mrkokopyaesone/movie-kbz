@@ -28,9 +28,9 @@
                 android:src="@drawable/ic_baseline_arrow_back_24"/>
             <EditText
                 android:id="@+id/edtSearch_SearchFragment"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:background="@color/color_transparent"
-                android:hint="Search here"
+                android:hint="Search Here"
                 android:layout_toEndOf="@id/backBtn"
                 android:maxLines="1"
                 android:focusable="true"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvSearch_SearchFragment"
+                android:id="@+id/tvCLEAR_SearchFragment"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:layout_centerInParent="true"
@@ -50,8 +50,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="@dimen/txt_size_ex_large"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:text="Clear"/>
+                android:text="CLEAR"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView

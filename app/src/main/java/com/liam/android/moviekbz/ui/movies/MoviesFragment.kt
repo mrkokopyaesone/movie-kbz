@@ -21,12 +21,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MoviesFragment: Fragment(), MoviesListener {
+class MoviesFragment : Fragment(), MoviesListener {
     private lateinit var binding: FragmentMovieListBinding
-    //private val args: MovieListFr by navArgs()
+
     private val vm: MoviesViewModel by viewModels()
     private lateinit var adapter: MovieListAdapter
-
 
 
     override fun onCreateView(
@@ -44,7 +43,8 @@ class MoviesFragment: Fragment(), MoviesListener {
         setupUI()
         observeViewModel()
     }
-    private fun showHideUi(){
+
+    private fun showHideUi() {
         binding.rvMovieList.visibility = View.VISIBLE
         binding.relativeLoadingMovieListFragment.visibility = View.GONE
     }
@@ -53,16 +53,19 @@ class MoviesFragment: Fragment(), MoviesListener {
         adapter = MovieListAdapter(this)
         binding.rvMovieList.adapter = adapter
         binding.rvMovieList.layoutManager = LinearLayoutManager(context)
-        binding.rvMovieList.layoutManager = LinearLayoutManager(context,
-            LinearLayoutManager.VERTICAL,false)
+        binding.rvMovieList.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL, false
+        )
         vm.page.value = 1
 
         binding.rvMovieList.addOnScrollListener(
-            object : RecyclerView.OnScrollListener(){
+            object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    val linearLayoutManager = binding.rvMovieList.layoutManager as LinearLayoutManager?
-                    if(dy > 0) if (vm.isLoading.value==true) {
+                    val linearLayoutManager =
+                        binding.rvMovieList.layoutManager as LinearLayoutManager?
+                    if (dy > 0) if (vm.isLoading.value == true) {
                         if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == adapter.itemCount - 1) {
                             vm.page.value++
                         }
@@ -74,7 +77,7 @@ class MoviesFragment: Fragment(), MoviesListener {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            vm.movieListFlow.collect{
+            vm.movieListFlow.collect {
                 adapter.addData(it)
                 showHideUi()
             }
@@ -82,6 +85,9 @@ class MoviesFragment: Fragment(), MoviesListener {
     }
 
     override fun clickMovie(movie: MovieModel) {
-        findNavController().navigate(R.id.movie_detail, bundleOf(MOVIE_DETAIL to Gson().toJson(movie) ))
+        findNavController().navigate(
+            R.id.movie_detail,
+            bundleOf(MOVIE_DETAIL to Gson().toJson(movie))
+        )
     }
 }

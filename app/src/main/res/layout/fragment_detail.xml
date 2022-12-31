@@ -39,7 +39,34 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin"
                 app:titleTextAppearance="@style/Toolbar.TitleText"
-                />
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/backBtn_Detail"
+                        android:layout_alignParentStart="true"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ic_baseline_arrow_back_24"/>
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvToolTitle_Detail"
+                        android:layout_toEndOf="@id/backBtn_Detail"
+                        android:layout_marginStart="25dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/txt_size_ex_large"
+                        android:textColor="@color/white"
+                        tools:text="Avatar"/>
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +80,11 @@
             android:layout_height="match_parent"
             android:layout_marginTop="6dp"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="6dp"
+
+            android:paddingTop="6dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTitle_MovieDetail"
@@ -130,27 +161,35 @@
                     android:layout_height="wrap_content"
                     tools:rating="3.5f" />
             </RelativeLayout>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_marginTop="8dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="@string/trailers"
-                android:textSize="@dimen/txt_size_ex_large"
-                android:textColor="@color/colorPrimary"
-                android:ellipsize="marquee"
-                android:maxLines="1"
-                android:maxLength="15"
-                android:singleLine="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTag_movieDetail"
+            <LinearLayout
+                android:id="@+id/linearTrailer_Detail"
+                android:visibility="gone"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/list_item_tag"/>
+                android:layout_height="wrap_content">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/trailers"
+                    android:textSize="@dimen/txt_size_ex_large"
+                    android:textColor="@color/colorPrimary"
+                    android:ellipsize="marquee"
+                    android:maxLines="1"
+                    android:maxLength="15"
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvTag_movieDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    tools:listitem="@layout/list_item_tag"/>
+            </LinearLayout>
+
+
             <com.google.android.material.textview.MaterialTextView
                 android:layout_marginTop="16dp"
                 android:paddingTop="2dp"
@@ -174,27 +213,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="@string/sample_overview"/>
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_marginTop="16dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="marquee"
-                android:maxLength="15"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:text="@string/reviews"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/txt_size_ex_large" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvReview_movieDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            <LinearLayout
+                android:id="@+id/linearReview_Detail"
+                android:visibility="gone"
                 android:orientation="vertical"
-                tools:listitem="@layout/list_item_review"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_marginTop="16dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="marquee"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/reviews"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/txt_size_ex_large" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvReview_movieDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/list_item_review"/>
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

@@ -51,12 +51,22 @@ class DetailFragment : Fragment(){
         lifecycleScope.launch {
             vm.loadReviews(movie.id)
             vm.reviewsFlow.collect{ reviews ->
+                if (reviews != null) {
+                    if (reviews.isNotEmpty()) {
+                        binding.linearReviewDetail.visibility = View.VISIBLE
+                    }
+                }
                 binding.rvReviewMovieDetail.adapter = reviews?.let { ReviewAdapter(it) }
             }
         }
         lifecycleScope.launch{
             vm.loadVideos(movie.id)
             vm.videosFlow.collect{ videos ->
+                if (videos != null) {
+                    if (videos.isNotEmpty()) {
+                        binding.linearTrailerDetail.visibility = View.VISIBLE
+                    }
+                }
                 binding.rvTagMovieDetail.adapter = videos?.let {
                     TrailerAdapter(it, object : VideoListener {
                         override fun clickVideo(key: String) {
@@ -69,6 +79,10 @@ class DetailFragment : Fragment(){
     }
 
     private fun setupUI() {
+        binding.backBtnDetail.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.tvToolTitleDetail.text = movie.title
         binding.tvTitleMovieDetail.text = movie.title
         binding.tvOverviewMovieDetail.text = movie.overview
         binding.rbTagMovieDetail.rating = (movie.vote_count/2).toFloat()

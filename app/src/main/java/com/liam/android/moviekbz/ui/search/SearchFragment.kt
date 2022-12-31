@@ -47,9 +47,13 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupUI() {
+        binding.tvCLEARSearchFragment.setOnClickListener{
+            binding.edtSearchSearchFragment.setText("")
+        }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+
         binding.edtSearchSearchFragment.requestFocus()
         binding.edtSearchSearchFragment.focus(requireContext())
 
