@@ -91,7 +91,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:ellipsize="marquee"
-                android:maxLength="15"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/colorPrimary"
