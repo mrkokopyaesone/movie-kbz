@@ -1,16 +1,11 @@
 package com.liam.android.moviekbz.helper
 
-import com.liam.android.moviekbz.helper.DateTimeHelper
 import android.text.TextUtils
 import android.util.Log
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.jvm.JvmOverloads
 
-/**
- * Created by ZMN on 4/6/18.
- */
 object DateTimeHelper {
     const val SERVER_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
     const val SERVER_DATE_TIME_12_HR_FORMAT = "MM/dd/yyyy hh:mm:ss a"

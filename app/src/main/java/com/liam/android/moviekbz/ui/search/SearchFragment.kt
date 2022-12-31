@@ -30,7 +30,6 @@ class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
     private val vm: MoviesViewModel by viewModels()
-    var keyword = "testing"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +46,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun setupUI() {
-        binding.tvCLEARSearchFragment.setOnClickListener{
+        binding.tvCLEARSearchFragment.setOnClickListener {
             binding.edtSearchSearchFragment.setText("")
         }
         binding.backBtn.setOnClickListener {
@@ -71,7 +70,8 @@ class SearchFragment : Fragment() {
         })
 
     }
-    private fun showHideUi(){
+
+    private fun showHideUi() {
         binding.rvSearchMovie.visibility = View.VISIBLE
         binding.relativeLoadingSearch.visibility = View.GONE
     }
@@ -82,10 +82,12 @@ class SearchFragment : Fragment() {
             vm.searchFlow.collect { reviews ->
                 showHideUi()
                 binding.rvSearchMovie.adapter = reviews.let {
-                    SearchAdapter(it, object : SearchMoviesListener{
+                    SearchAdapter(it, object : SearchMoviesListener {
                         override fun searchMovie(movie: MovieModel) {
-                            findNavController().navigate(R.id.movie_detail,
-                                bundleOf(MOVIE_DETAIL to Gson().toJson(movie) ))
+                            findNavController().navigate(
+                                R.id.movie_detail,
+                                bundleOf(MOVIE_DETAIL to Gson().toJson(movie))
+                            )
                         }
 
                     })

@@ -11,17 +11,16 @@ import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
 @HiltViewModel
-class MoviesViewModel   @Inject constructor(
+class MoviesViewModel @Inject constructor(
     private val repository: TheMovieRepository
-): ViewModel() {
+) : ViewModel() {
 
     var isLoading = MutableLiveData(false)
     var page = MutableStateFlow(1)
-    var query = MutableStateFlow(1)
 
     var movieListFlow = page.flatMapLatest {
         isLoading.value = true
-        repository.loadMovies(it){}
+        repository.loadMovies(it) {}
     }
 
     @MainThread

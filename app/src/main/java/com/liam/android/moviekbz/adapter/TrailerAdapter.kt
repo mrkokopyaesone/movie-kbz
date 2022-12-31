@@ -12,8 +12,8 @@ import com.liam.android.moviekbz.ui.listener.VideoListener
 class TrailerAdapter(
     private val videoList: List<VideoModel>,
     private val listener: VideoListener
-):
-RecyclerView.Adapter<TrailerViewHolder>(){
+) :
+    RecyclerView.Adapter<TrailerViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrailerViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ListItemTagBinding.inflate(inflater, parent, false)
@@ -22,7 +22,7 @@ RecyclerView.Adapter<TrailerViewHolder>(){
 
     override fun onBindViewHolder(holder: TrailerViewHolder, position: Int) {
         val item = videoList[position]
-        holder.bind(item,listener)
+        holder.bind(item, listener)
     }
 
     override fun getItemCount(): Int = videoList.size
@@ -34,7 +34,7 @@ class TrailerViewHolder(private val binding: ListItemTagBinding) :
         binding.tvVideoTitleItemTag.text = video.name
 
         Glide.with(binding.root.context)
-            .load("https://img.youtube.com/vi/"+video.key+"/default.jpg")
+            .load("https://img.youtube.com/vi/" + video.key + "/default.jpg")
             .centerCrop()
             .placeholder(com.liam.android.moviekbz.R.drawable.ic_launcher_background)
             .into(binding.ivVideoCoverItemTag)

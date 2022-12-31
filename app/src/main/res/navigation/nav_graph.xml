@@ -17,37 +17,6 @@
             app:nullable="true" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetailFragment"
-        android:name="com.liam.android.moviekbz.ui.MovieDetailFragment"
-        android:label="MovieDetailFragment" >
-        <argument
-            android:name="movieId"
-            app:argType="integer" />
-        <argument
-            android:name="poster"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="title"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="overview"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="vote_count"
-            app:argType="float" />
-        <argument
-            android:name="release_date"
-            app:argType="string"
-            app:nullable="true" />
-        <action
-            android:id="@+id/action_movieDetailFragment_to_videoFragment"
-            app:destination="@id/videoFragment" />
-
-    </fragment>
-    <fragment
         android:id="@+id/videoFragment"
         android:name="com.liam.android.moviekbz.ui.VideoFragment"
         android:label="VideoFragment"/>

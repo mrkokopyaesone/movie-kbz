@@ -12,16 +12,12 @@ import com.liam.android.moviekbz.databinding.ListItemSearchBinding
 import com.liam.android.moviekbz.helper.DateTimeHelper
 import com.liam.android.moviekbz.model.entity.MovieModel
 import com.liam.android.moviekbz.ui.listener.SearchMoviesListener
-import com.liam.android.moviekbz.ui.listener.VideoListener
 
 class SearchAdapter(
     private val searchList: List<MovieModel>,
     private val listener: SearchMoviesListener
 ) :
     RecyclerView.Adapter<SearchAdapter.SearchMovieViewHolder>() {
-
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchMovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -41,7 +37,6 @@ class SearchAdapter(
         fun bind(movie: MovieModel, listener: SearchMoviesListener) {
             binding.tvTitleItemSearchMovie.text = movie.title
             binding.tvOverviewItemSearchMovie.text = movie.overview
-            Log.d("SearchAdapter", "bind: ${movie.title}")
 
             if (movie.release_date != null) {
                 binding.tvDateItemSearchMovie.text = DateTimeHelper.convertDateFormat(

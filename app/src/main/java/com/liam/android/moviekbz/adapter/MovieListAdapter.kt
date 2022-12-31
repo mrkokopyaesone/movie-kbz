@@ -30,10 +30,10 @@ class MovieListAdapter(private val listener: MoviesListener) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item,listener)
+        holder.bind(item, listener)
     }
 
-    override fun getItemCount(): Int =data.size
+    override fun getItemCount(): Int = data.size
 
     class MovieViewHolder(private val binding: ListItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,14 +41,16 @@ class MovieListAdapter(private val listener: MoviesListener) :
             binding.tvTitleItemMovie.text = movie.title
             binding.tvOverviewItemMovie.text = movie.overview
 
-            if (movie.release_date != null){
-                binding.tvDateItemMovie.text =  DateTimeHelper.convertDateFormat(movie.release_date!!,
+            if (movie.release_date != null) {
+                binding.tvDateItemMovie.text = DateTimeHelper.convertDateFormat(
+                    movie.release_date,
                     DateTimeHelper.SERVER_DATE_FORMAT,
-                    DateTimeHelper.LOCAL_DATE_DISPLAY_FORMAT)
+                    DateTimeHelper.LOCAL_DATE_DISPLAY_FORMAT
+                )
             }
 
             Glide.with(binding.root.context)
-                .load("https://image.tmdb.org/t/p/w780"+movie.backdrop_path)
+                .load("https://image.tmdb.org/t/p/w780" + movie.backdrop_path)
                 .transform(CenterCrop(), RoundedCorners(5))
                 .placeholder(com.liam.android.moviekbz.R.drawable.ic_launcher_background)
                 .into(binding.ivPosterItemMovie)

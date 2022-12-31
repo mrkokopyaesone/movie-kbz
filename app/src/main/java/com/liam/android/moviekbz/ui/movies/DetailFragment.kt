@@ -1,11 +1,11 @@
 package com.liam.android.moviekbz.ui.movies
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -25,8 +25,9 @@ import kotlinx.coroutines.launch
 
 val MOVIE_DETAIL = "param1"
 private const val TAG = "DetailFragment"
+
 @AndroidEntryPoint
-class DetailFragment : Fragment(){
+class DetailFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailBinding
     private val vm: MoviesViewModel by viewModels()
@@ -50,7 +51,7 @@ class DetailFragment : Fragment(){
     private fun loadData() {
         lifecycleScope.launch {
             vm.loadReviews(movie.id)
-            vm.reviewsFlow.collect{ reviews ->
+            vm.reviewsFlow.collect { reviews ->
                 if (reviews != null) {
                     if (reviews.isNotEmpty()) {
                         binding.linearReviewDetail.visibility = View.VISIBLE
@@ -59,9 +60,9 @@ class DetailFragment : Fragment(){
                 binding.rvReviewMovieDetail.adapter = reviews?.let { ReviewAdapter(it) }
             }
         }
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             vm.loadVideos(movie.id)
-            vm.videosFlow.collect{ videos ->
+            vm.videosFlow.collect { videos ->
                 if (videos != null) {
                     if (videos.isNotEmpty()) {
                         binding.linearTrailerDetail.visibility = View.VISIBLE
@@ -70,7 +71,10 @@ class DetailFragment : Fragment(){
                 binding.rvTagMovieDetail.adapter = videos?.let {
                     TrailerAdapter(it, object : VideoListener {
                         override fun clickVideo(key: String) {
-                            findNavController().navigate(R.id.videoFragment, bundleOf("Video_key" to key ))
+                            findNavController().navigate(
+                                R.id.videoFragment,
+                                bundleOf("Video_key" to key)
+                            )
                         }
                     })
                 }
@@ -85,15 +89,17 @@ class DetailFragment : Fragment(){
         binding.tvToolTitleDetail.text = movie.title
         binding.tvTitleMovieDetail.text = movie.title
         binding.tvOverviewMovieDetail.text = movie.overview
-        binding.rbTagMovieDetail.rating = (movie.vote_count/2).toFloat()
-        if (movie.release_date != null){
-            binding.tvDateMovieDetail.text =  DateTimeHelper.convertDateFormat(movie.release_date!!,
+        binding.rbTagMovieDetail.rating = (movie.vote_count / 2).toFloat()
+        if (movie.release_date != null) {
+            binding.tvDateMovieDetail.text = DateTimeHelper.convertDateFormat(
+                movie.release_date!!,
                 DateTimeHelper.SERVER_DATE_FORMAT,
-                DateTimeHelper.LOCAL_DATE_DISPLAY_FORMAT)
+                DateTimeHelper.LOCAL_DATE_DISPLAY_FORMAT
+            )
         }
 
         Glide.with(binding.root.context)
-            .load("https://image.tmdb.org/t/p/w780"+ movie.poster_path)
+            .load("https://image.tmdb.org/t/p/w780" + movie.poster_path)
             .transform(CenterCrop(), RoundedCorners(4))
             .placeholder(com.liam.android.moviekbz.R.color.colorPrimary)
             .into(binding.movieDetailPoster)

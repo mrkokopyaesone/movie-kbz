@@ -1,12 +1,10 @@
 package com.liam.android.moviekbz
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
-import androidx.appcompat.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -40,12 +38,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchViewVisibility(navController: NavController) {
-        navController.addOnDestinationChangedListener{_,des,_ ->
-            when(des.id){
+        navController.addOnDestinationChangedListener { _, des, _ ->
+            when (des.id) {
                 R.id.movie_search -> {
                     binding.toolbar.visibility = View.GONE
                 }
-                R.id.movie_detail ->{
+                R.id.movie_detail -> {
                     binding.toolbar.visibility = View.GONE
                 }
                 else -> {
@@ -66,13 +64,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.action_search -> {
                 val navController = findNavController(R.id.nav_host_fragment_content_main)
                 navController.navigate(R.id.movie_search)
                 true
             }
-            else ->super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

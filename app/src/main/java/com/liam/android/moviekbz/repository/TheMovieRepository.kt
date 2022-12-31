@@ -28,16 +28,16 @@ class TheMovieRepository constructor(
         } else {
             emit(movies)
         }
-    }.onCompletion {success()}.flowOn(Dispatchers.IO)
+    }.onCompletion { success() }.flowOn(Dispatchers.IO)
 
     @WorkerThread
     fun searchMovies(query: String) = flow {
-            val response = service.fetchSearchMovies(query)
-            response.suspendOnSuccess {
-               val searchMovies = data.results
-                movieDao.insertMovieList(searchMovies)
-                emit(searchMovies)
-            }
+        val response = service.fetchSearchMovies(query)
+        response.suspendOnSuccess {
+            val searchMovies = data.results
+            movieDao.insertMovieList(searchMovies)
+            emit(searchMovies)
+        }
 
     }.flowOn(Dispatchers.IO)
 
