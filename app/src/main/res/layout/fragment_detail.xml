@@ -10,8 +10,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:elevation="4dp"
-        tools:targetApi="LOLLIPOP">
+        android:elevation="4dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -118,7 +117,7 @@
                     android:textSize="@dimen/txt_size_large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Release Date"/>
+                    android:text="@string/release_date"/>
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
@@ -130,7 +129,7 @@
                     android:maxLength="15"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Rating" />
+                    android:text="@string/rating" />
             </RelativeLayout>
 
             <RelativeLayout

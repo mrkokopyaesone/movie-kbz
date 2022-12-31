@@ -30,7 +30,7 @@
                 android:id="@+id/edtSearch_SearchFragment"
                 android:layout_marginStart="25dp"
                 android:background="@color/color_transparent"
-                android:hint="Search Here"
+                android:hint="@string/search_here"
                 android:layout_toEndOf="@id/backBtn"
                 android:maxLines="1"
                 android:focusable="true"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="16dp"
                 android:textSize="@dimen/txt_size_large"
                 android:textColor="@color/white"
-                android:text="CLEAR"/>
+                android:text="@string/clear"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
